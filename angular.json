@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "formulario-ocgn-frontend": {
+    "admin-access-project-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/formulario-ocgn-frontend",
+            "outputPath": "dist/admin-access-project-frontend",
             "index": "src/index.html",
             "polyfills": [
               "zone.js"
@@ -124,10 +124,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "formulario-ocgn-frontend:build:production"
+              "buildTarget": "admin-access-project-frontend:build:production"
             },
             "development": {
-              "buildTarget": "formulario-ocgn-frontend:build:development"
+              "buildTarget": "admin-access-project-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -135,7 +135,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "formulario-ocgn-frontend:build"
+            "buildTarget": "admin-access-project-frontend:build"
           }
         },
         "test": {
