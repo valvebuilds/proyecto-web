@@ -1,0 +1,28 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    margin: 10px;
+}
+
+.flex-30 {
+    flex: 0 0 30%;
+}
+
+.flex-70 {
+    flex: 0 0 65%;
+}
+
+.label-custom {
+    font-weight: 500;
+}
+
+.value {
+    margin-bottom: 1rem;
+}
+
+.no-data-message {
+    margin-left: 16px;
+    margin-top: 16px;
+}
