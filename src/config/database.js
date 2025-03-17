@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+//Variables de entorno llamadas del .env
 const sequelize = new Sequelize (
     process.env.DB_NAME, 
     process.env.DB_USER, 
