@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
+//Define table que relaciona roles con permisos
 const rolePermission = sequelize.define('rolePermission', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     rol_id: {
