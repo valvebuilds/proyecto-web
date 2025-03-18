@@ -59,11 +59,12 @@ exports.updateUser = async (req , res ) => {
     }
 };
 
+//Controlador para eliminar a un usuario
 exports.deleteUser = async (req, res) => {
     try {
-        const { id } = req.params; 
-        const admin_from_token = req.user.id; 
-        const deletedUser = await userService.deleteUser(id, admin_from_token);
+        const { id } = req.params; //Extrae id del usuario a eliminar desde el request
+        const admin_from_token = req.user.id; //extrae id del usuario autenticado
+        const deletedUser = await userService.deleteUser(id, admin_from_token); //llama al service de usuario para ejecutar método deleteUser
         
         res.status(200).json({ message: "Usuario eliminado con éxito" });
     } catch (err) {

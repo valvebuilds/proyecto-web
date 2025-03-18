@@ -1,15 +1,19 @@
+// importar configuración de la base de datos 
 const sequelize = require('./config/database');
 const app = require('.app');
+//cargar variables de entorno
 const dotenv = require('dotenv');
+//importar relaciones entre tablas
 require('./models/associations');
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000 ;
-
+const PORT = process.env.PORT || 3000 ; //Puerto para ejecutar el servidor
+//conecta a la base de datos con sequelize
 sequelize.authenticate()
     .then(() => {
         console.log('Conectado a PostgreSQL con Sequelize')
+        //corre el servidor en el puerto 3000
         app.listen(PORT, () => {
             console.log('Servidor corriendo en http://localhost:${PORT}');
         }); 
