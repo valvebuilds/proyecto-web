@@ -1,6 +1,7 @@
 const { where } = require('sequelize');
 const User = require ('../models/user.model');
-const bcrypt = require ('bcrypt.js');
+const bcrypt = require('bcryptjs');
+
 
 
 //Método para crear unn uevo usuario
