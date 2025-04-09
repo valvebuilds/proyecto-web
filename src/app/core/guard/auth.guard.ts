@@ -8,8 +8,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthGuard  {
   constructor(private readonly authService: AuthService) {}
-  
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authService.isAuthenticated();
     if (currentUser) {
