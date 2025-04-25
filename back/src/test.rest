@@ -1,0 +1,4 @@
+@env = local
+###GET USERS ENDPOINT
+http://localhost:3000/api/users
+Authorization: Bearer 519d6aa567e376bc52be4fa249d65aafcd8412887e504254db3a209450cbc86b52056f1697eeb6cb4bb6ff900412e180bce98e6bfb6c439081139a59d3492143
