@@ -5,6 +5,7 @@ const projectController = require('../controllers/project.controller');
 const ROLES = require('../utils/constants');
 const { authenticateToken, checkRole } = require('../middleware/auth.middleware');
 
+//endpoints de proyectos, primero autentica usuario y verifica que sea admin antes de permitir cambios a la BD
 router.post('/projects/create', authenticateToken, checkRole([ROLES.ADMIN]), projectController.createProject);
 router.put('/projects/update/:id', authenticateToken, checkRole([ROLES.ADMIN]), projectController.updateProject);
 router.delete('/projects/delete/:id', authenticateToken, checkRole([ROLES.ADMIN]), projectController.deleteProject);

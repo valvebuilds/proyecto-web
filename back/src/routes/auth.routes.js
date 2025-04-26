@@ -3,23 +3,23 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const userService = require('../services/user.service');
+const { getRoleNameById, authenticateUser } = require('../services/auth.service'); 
 
 dotenv.config();
-const SECRET_KEY = process.env.JWT_SECRET;
+const SECRET_KEY = process.env.JWT_SECRET; //llama variable de entorno de llave secreta
 
+//endpoint de login
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  console.log('Intentando login con:', email, password);
+  const { email, password } = req.body; //credenciales
   try {
-    const user = await userService.authenticateUser(email, password);
+    const user = await authenticateUser(email, password); //llama a metodo de autenticacion
+    const roleName = getRoleNameById(user.rol_id); //obtiene rol del usuario
     const payload = {
         id: user.id,
         email: user.email,
-        rol: user.rol
+        rol: roleName
       };
-
-      const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' }); //almacena el payload y genera token
 
     res.json({ token });
   } catch (error) {

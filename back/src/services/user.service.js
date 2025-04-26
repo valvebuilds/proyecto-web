@@ -123,18 +123,3 @@ exports.deleteUser = async (id, admin_from_token) => {
     }
 };
 
-exports.authenticateUser = async (email, password) => {
-    const user = await User.findOne({ where: { email } }); // Sequelize
-    // o con Mongoose: const user = await User.findOne({ email });
-  
-    if (!user) {
-      throw new Error('Credenciales inválidas');
-    }
-  
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      throw new Error('Credenciales inválidas');
-    }
-  
-    return user;
-  };
