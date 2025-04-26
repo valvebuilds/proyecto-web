@@ -12,5 +12,5 @@ module.exports = {
     DB_PASSWORD: 'root',
     DB_HOST: 'localhost',
     DB_PORT: 5432,
-    JWT_SECRET: ''
+    JWT_SECRET: clave123
 }
