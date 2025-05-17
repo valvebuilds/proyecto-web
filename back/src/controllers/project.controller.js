@@ -4,8 +4,10 @@ const userService = require('../services/user.service');
 //Método del controlador que extrae datos del request para la creación de un nuevo proyecto
 exports.createProject = async (req, res) => {
     try {
+        //asignar fecha_creacion
+        const fecha_creacion = new Date();
         //extraer datos del request
-        const { nombre, descripcion, fecha_creacion, admin_id} = req.body;
+        const { nombre, descripcion, admin_id} = req.body;
         //Llama a user service para crear al usuario
         const project = await projectService.createProject(nombre, descripcion, fecha_creacion, admin_id);
             
@@ -63,8 +65,8 @@ exports.getAllProjects = async (req, res) => {
 //Dado un user id, se llama al servicio para mostrar los proyectos de un usuario
 exports.getProjectsByUserId = async (req, res) => {
     try {
-        const { userid } = req.params;
-        const projects = await projectService.getProjectsByUserId(userid);
+        const { id } = req.params;
+        const projects = await projectService.getProjectsByUser(id);
         return res.status(200).json({ message: 'Proyectos obtenidos con éxito.', proyectos: projects });
     } catch (err) {
         return res.status(500).json({ error: err.message });

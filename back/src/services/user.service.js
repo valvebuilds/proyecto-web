@@ -1,6 +1,7 @@
 const { where } = require('sequelize');
 const User = require ('../models/user.model');
 const bcrypt = require('bcryptjs');
+const { Op } = require('sequelize');
 
 
 
@@ -37,13 +38,20 @@ exports.createUser = async (nombre, email, password,
 };
 
 //Método para que el admin acceda a su lista de usuarios asignados
-exports.getAllUsersByAdministradorId = async (admin_id, email) => {
+exports.getAllUsersByAdministradorId = async (admin_id, email, nombre) => {
     try{
         //se define parámetro de query para el where; id del admin
         const whereClause = { admin_id };
         //permite opción adicional al admin de filtrar a sus usuarios por el correo. 
         if (email) {
-            whereClause.email = email;
+            whereClause.email = {[Op.iLike]: `${email}%` // busca coincidencias parciales (ignorando mayúsculas)
+            };
+        }
+
+        if (nombre) {
+             whereClause.nombre = {
+                [Op.iLike]: `${nombre}%`
+            };
         }
         //retorna listado de usuarios con su info
         const users = await User.findAll({ where: whereClause, attributes: { exclude: ['password'] }});

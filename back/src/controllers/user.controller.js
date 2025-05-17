@@ -4,9 +4,9 @@ const userService = require('../services/user.service');
 exports.createUser = async (req, res) => {
     try {
         //extraer datos del request
-        const { nombre, email, password, rol_id, admin_id } = req.body;
+        const { nombre, email, password, rol_id, administrador_id } = req.body;
         //Llama a user service para crear al usuario
-        const user = await userService.createUser(nombre, email, password, rol_id, admin_id);
+        const user = await userService.createUser(nombre, email, password, rol_id, administrador_id);
             
         return res.status(200).json({ message: 'Usuario creado con éxito.', user: user });
     } catch (err) {
@@ -20,9 +20,9 @@ exports.getAllUsersByAdministradorId = async (req, res) => {
         //extrae el id del usuario autenticado
         const admin_from_token = req.user.id;
         //parámetro de query por si el administrador quiere filtrar por un correo especifico
-        const { email } = req.query;
+        const { name, email } = req.query;
         //llamado al servicio de usuarios para filtrar
-        const users = await userService.getAllUsersByAdministradorId(admin_from_token, email);
+        const users = await userService.getAllUsersByAdministradorId(admin_from_token, email, name);
         res.status(200).json({message: 'Usuarios consultados con éxito', users});
     } catch(err){
         res.status(500).json({ message: 'Error al obtener usuarios ', err});

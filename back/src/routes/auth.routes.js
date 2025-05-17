@@ -16,11 +16,12 @@ router.post('/login', async (req, res) => {
     const roleName = getRoleNameById(user.rol_id); //obtiene rol del usuario
     const payload = {
         id: user.id,
+        name: user.nombre,
         email: user.email,
-        rol: roleName
+        rol: user.rol_id
       };
       const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' }); //almacena el payload y genera token
-
+      console.log(token);
     res.json({ token });
   } catch (error) {
     res.status(401).json({ message: error.message });

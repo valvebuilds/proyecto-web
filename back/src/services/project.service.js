@@ -2,6 +2,7 @@ const { where } = require('sequelize');
 const Project = require('../models/project.model');
 const User = require('../models/user.model');
 const ROLES = require('../utils/constants');
+const userProject = require('../models/userProject.model');
 
 //Creacion de proyecto nuevo
 exports.createProject = async (nombre, descripcion, fecha_creacion, admin_id) => {
@@ -47,6 +48,27 @@ exports.getProject = async (id) => {
 
     if (!project) throw new Error('Proyecto no encontrado');
     return project;
+};
+
+exports.getProjectsByUser = async (userId) => {
+    
+  const user = await User.findByPk(userId, {
+    include: [{
+      model: Project,
+      as: 'proyectos', // asegúrate de que este alias coincida con tu asociación
+      attributes: ['id', 'nombre', 'descripcion', 'fecha_creacion', 'admin_id'],
+      through: { attributes: [] }, // para no traer los datos de la tabla intermedia
+      include: [{
+        model: User,
+        as: 'admin', // si definiste esta relación para el admin del proyecto
+        attributes: ['id', 'nombre']
+      }]
+    }]
+  });
+
+  if (!user) throw new Error('Usuario no encontrado');
+
+  return user.proyectos; // Lista de proyectos asociados
 };
 
 //obtener todos los proyectos de la BD
