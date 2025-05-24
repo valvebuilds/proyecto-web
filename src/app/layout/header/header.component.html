@@ -31,14 +31,15 @@
           <button mat-button [matMenuTriggerFor]="profilemenu">
             <div class="chip dropdown-toggle" ngbDropdownToggle class="">
               <span>{{ userLogged }}</span>
-              <img src="imagen de preferencia" class="user_img" width="32" height="32" alt="User">
+              <span>Valerie Álvarez S.</span>
+              <img src="../../../assets/images/user/photo.png" class="user_img" width="28" height="38" alt="User">
             </div>
           </button>
           <mat-menu #profilemenu="matMenu" class="profile-menu">
             <div class="noti-list">
               <div class="menu ">
                 <div class="user_dw_menu">
-                  <button mat-menu-item class="user-item-list">
+                  <button mat-menu-item class="user-item-list" (click) = "logout()">
                     <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Cerrar sesión
                   </button>
                 </div>

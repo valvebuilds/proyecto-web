@@ -49,7 +49,6 @@ export class MainLayoutComponent extends UnsubscribeOnDestroyAdapter implements 
     //------------ set theme start----------------
 
     if (localStorage.getItem('choose_skin')) {
-      //console.log("ENTRO PORQUE EXISTE CLASE");
       this.renderer.removeClass(
         this.document.body,
         'theme-' + this.config.layout.theme_color
@@ -64,9 +63,7 @@ export class MainLayoutComponent extends UnsubscribeOnDestroyAdapter implements 
         (localStorage.getItem('choose_skin') as string).substring(6)
       );
     } else {
-      //console.log("ENTRO PORQUE NO EXISTE CLASE");
-      //console.log(this.config);
-      
+    
       this.renderer.addClass(
         this.document.body,
         'theme-' + this.config.layout.theme_color

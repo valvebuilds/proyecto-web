@@ -77,6 +77,7 @@
     "@types/d3": "^7.4.3",
     "@types/echarts": "^4.9.22",
     "@types/jasmine": "~5.1.4",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
     "eslint": "^9.3.0",

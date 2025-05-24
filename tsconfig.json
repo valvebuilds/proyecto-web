@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
+    "types": ["jest", "node"],
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "strict": true,
@@ -24,6 +25,7 @@
       "dom"
     ],
     "paths": {
+      "app/*": ["app/*"],
       "@core": ["app/core"],
       "@core/*": ["app/core/*"],
       "@shared": ["app/shared"],

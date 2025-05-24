@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
         const userSession = this._authService.getAuthFromSessionStorage();
             console.log(userSession);
             
-        if (userSession && userSession.rol_id === 1) {
+        if (userSession && userSession.rol === 1) {
             return true;
         } else {
             this._router.navigate(['/authentication/page404']);

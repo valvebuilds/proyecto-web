@@ -62,6 +62,7 @@ export class SigninComponent implements OnInit {
       .login(this.authForm.get('username')?.value, this.authForm.get('password')?.value)
       .subscribe({
         next: (res) => {
+          console.log('Respuesta completa del backend:', res);
           if (res?.token) {
             // Guardar el token
             sessionStorage.setItem('accessToken', res.token);

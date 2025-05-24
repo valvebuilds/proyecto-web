@@ -14,8 +14,8 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-// import { ROUTES } from './sidebar-items';
-// import { AuthService } from '@core';
+import { ROUTES } from './sidebar-items';
+import { AuthService } from '@core';
 import { RouteInfo } from './sidebar.metadata';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,24 +58,24 @@ export class SidebarComponent
     @Inject(DOCUMENT) private readonly _document: Document,
     private readonly _renderer: Renderer2,
     public readonly _elementRef: ElementRef,
-    // private readonly _authService: AuthService,
+    private readonly _authService: AuthService,
     private readonly _router: Router,
     private readonly _domSanitizer: DomSanitizer
   ) {
     super();
     this.subs.sink = this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // close sidebar on mobile screen after menu select
+        //close sidebar on mobile screen after menu select
         this._renderer.removeClass(this._document.body, 'overlay-open');
       }
     });
-    // const roleInfo = this._authService.getRoleInfoByToken();
-    // this.userLogged = roleInfo ? roleInfo.roleName : undefined;
+    const roleInfo = this._authService.getRoleInfoByToken();
+    this.userLogged = roleInfo ? roleInfo.roleName : undefined;
   }
   @HostListener('window:resize', ['$event'])
   windowResizecall() {
     this.setMenuHeight();
-    this.checkStatuForResize(false);
+    this.checkStatusForResize(false);
   }
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: Event): void {
@@ -116,10 +116,10 @@ export class SidebarComponent
   }
 
   ngOnInit() {
-    // const rolAuthority = this._authService.getAuthFromSessionStorage().rol_id;
-    // this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem?.rolAuthority.includes(rolAuthority));
-    // this.initLeftSidebar();
-    // this.bodyTag = this._document.body;
+    const rolAuthority = this._authService.getAuthFromSessionStorage().rol;
+    this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem?.rolAuthority.includes(rolAuthority));
+    this.initLeftSidebar();
+    this.bodyTag = this._document.body;
   }
 
 
@@ -128,7 +128,7 @@ export class SidebarComponent
     const _this = this;
     // Set menu height
     _this.setMenuHeight();
-    _this.checkStatuForResize(true);
+    _this.checkStatusForResize(true);
   }
   setMenuHeight() {
     this.innerHeight = window.innerHeight;
@@ -140,7 +140,7 @@ export class SidebarComponent
     return this.bodyTag.classList.contains('overlay-open');
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  checkStatuForResize(firstTime: boolean) {
+  checkStatusForResize(firstTime: boolean) {
     if (window.innerWidth < 1025) {
       this._renderer.addClass(this._document.body, 'ls-closed');
     } else {

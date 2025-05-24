@@ -1,5 +1,7 @@
 import { ROLES } from '@shared/models/enums';
 import { RouteInfo } from './sidebar.metadata';
+import { MatIconModule } from '@angular/material/icon';
+
 export const ROUTES: RouteInfo[] = [
   {
     path: '/dashboard/main',
@@ -11,7 +13,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    rolAuthority: [ROLES.ADMIN, ROLES.USER]
+    rolAuthority: [1, 2]
   },
   {
     path: '/page/projects',
@@ -23,7 +25,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    rolAuthority: [ROLES.ADMIN]
+    rolAuthority: [1]
   },  
   {
     path: '/page/users',
@@ -35,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    rolAuthority: [ROLES.ADMIN]
+    rolAuthority: [1]
   },
   {
     path: '/page/projects',
@@ -47,6 +49,6 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    rolAuthority: [ROLES.USER]
+    rolAuthority: [2]
   },  
 ];
